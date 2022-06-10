@@ -14,9 +14,11 @@ Takes the dimensions of a rectanglular prisim to find area plus the size of the 
 Day 3
 
 Move through a 2d grid of arbitrary dimensions one space at a time based on the directional intructions '>' = right, '<' = left, '^' = up, and 'v' = down. 
+
 Part 1
 
 Tracks the number of positions a single person vists following each instruction
+
 Part 2
 
 Splits instructions between 2 people and tracks tne number of houses tackled colaberatively taking turns to execute movements.
