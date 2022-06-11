@@ -1,17 +1,17 @@
 # AoC
 Advent of Code is a yearly exercise done around christmas. I have decided to work on different languages and build a portfolio of little projects with this. Each Program so far is a command line tool that can take any text file and defaults to ./file.txt.
 
-2015
+**2015**
 
-Day 1
+**Day 1**
 
 Using parathesisis we track "floors" as well as marking the first time we "reach the basement"(pass a count of -1).
 
-Day 2
+**Day 2**
 
 Takes the dimensions of a rectanglular prisim to find area plus the size of the smallest side as well as the shortest length around said rectangular rectangular prism, and the volume of the object, all tracked by amount of wrapping paper and ribbons required.
 
-Day 3
+**Day 3**
 
 Move through a 2d grid of arbitrary dimensions one space at a time based on the directional intructions '>' = right, '<' = left, '^' = up, and 'v' = down. 
 
@@ -23,14 +23,15 @@ Part 2
 
 Splits instructions between 2 people and tracks tne number of houses tackled colaberatively taking turns to execute movements.
 
-Day 4
+**Day 4**
 
-A brute force method of cracking an MD5 hash given some starting condition
+NOTE: This tool takes an argument of the starting condition and NOT a file. Although the default ./file.txt still works if no arguments are called
+A brute force method of cracking an MD5 hash given some required number of digits in base 16.
 
 Part 1
 
-Finds the value for a hash that produces 5 leading zeros(~1 min)
+Finds the value for a hash that produces 5 leading zeros(~1 min).
 
 Part 2
 
-Finds the value for a has that produces 6 leading zeros(~15 min)
+Finds the value for a has that produces 6 leading zeros(~15 min).
