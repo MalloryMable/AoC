@@ -22,3 +22,15 @@ Tracks the number of positions a single person vists following each instruction
 Part 2
 
 Splits instructions between 2 people and tracks tne number of houses tackled colaberatively taking turns to execute movements.
+
+Day 4
+
+A brute force method of cracking an MD5 hash given some starting condition
+
+Part 1
+
+Finds the value for a hash that produces 5 leading zeros(~1 min)
+
+Part 2
+
+Finds the value for a has that produces 6 leading zeros(~15 min)
