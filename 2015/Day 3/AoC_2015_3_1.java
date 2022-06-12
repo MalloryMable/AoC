@@ -12,7 +12,7 @@ public class AoC_2015_3_1 {
         Scanner scanner = new Scanner(file);
         //NOTE: this program only accepts one line of input of arbitrary length
         String line = scanner.nextLine();
-
+        scanner.close();
         ArrayList<ArrayList<Integer>> field = new ArrayList<>();
         int x = 0, y = 0, visited = 1;
         //initializing
