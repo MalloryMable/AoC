@@ -11,6 +11,7 @@ public class AoC_2015_3_2 {
         Scanner scanner = new Scanner(file);
         //NOTE: this program only accepts one line of input of arbitrary length
         String line = scanner.nextLine();
+        scanner.close();
 
         ArrayList<ArrayList<Integer>> field = new ArrayList<>(0);
         int y, x = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, visited = 1;
