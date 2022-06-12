@@ -36,7 +36,7 @@ Part 2
 
 Finds the value for a has that produces 6 leading zeros(~15 min).
 
-**Day 4**
+**Day 5**
 
 A pair of text matching programs that count up the number of lines that meet a certain condition.
 
