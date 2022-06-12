@@ -35,3 +35,15 @@ Finds the value for a hash that produces 5 leading zeros(~1 min).
 Part 2
 
 Finds the value for a has that produces 6 leading zeros(~15 min).
+
+**Day 4**
+
+A pair of text matching programs that count up the number of lines that meet a certain condition.
+
+Part 1
+
+Condtions are 3 vowels at any position, any pair of letters, and Not containing "ab", "cd", "pq", or "xy"
+
+Part 2
+
+Conditions are any pair of letters repeats, any letter repeats with exactly one letter between the instances
