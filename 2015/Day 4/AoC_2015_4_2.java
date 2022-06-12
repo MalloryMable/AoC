@@ -9,6 +9,7 @@ public class AoC_2015_4_2 {
     public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException {
         Scanner scanner = args.length != 0 ? new Scanner(args[0]) : new Scanner(new File("file.txt"));
         String input = scanner.next();
+        scanner.close();
         //omitted the first solution because AoC wouldn't accept it int count = 13981930;
         int count = 0;
         while(count < 1000000000) {

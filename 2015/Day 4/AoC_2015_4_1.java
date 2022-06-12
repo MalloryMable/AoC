@@ -9,6 +9,8 @@ public class AoC_2015_4_1 {
     public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException {
         Scanner scanner = args.length != 0 ? new Scanner(args[0]) : new Scanner(new File("file.txt"));
         String input = scanner.next();
+        scanner.close();
+
         int count = 0;
         while(count < 10000000) {
             String test = input+Integer.toHexString(count++);
