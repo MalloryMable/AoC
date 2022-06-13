@@ -47,3 +47,15 @@ Condtions are 3 vowels at any position, any pair of letters, and Not containing 
 Part 2
 
 Conditions are any pair of letters repeats, any letter repeats with exactly one letter between the instances
+
+**Day 6**
+
+Reading instructions formatted "[INSTRUCTION] (x,y) through (x,y)" from a file to control a 1000x1000 grid of lights. The instructions are "turn on", "turn off", "toggle"
+
+Part 1
+
+Turns lights on and off based on instructions, and returns the total number of turned on lights
+
+Part 2 
+
+Turns up and down lights where 0 is off, turn off turns down, turn on turns up by a factor of 1, and toggle turns up by a factor of two. Returns the total amount of light(lumens?) produced 
