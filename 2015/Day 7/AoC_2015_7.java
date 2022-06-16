@@ -102,10 +102,6 @@ public class AoC_2015_7 {
             for (int i = 0; i < functions.size(); i++) {
                 set(dest.get(i), function(functions.get(i), get(inputs.get(i)[0]), get(inputs.get(i)[1])));
             }
-            System.out.println("New line");
-            for(String key: keys) {
-                System.out.printf("  %s: %03d\n",key, get(key));
-            }
         }
 
         System.out.printf("The value stored to wire a is %d\n", get("a"));
@@ -119,9 +115,7 @@ public class AoC_2015_7 {
         for(int j = 0; j < 25; j++){
             for (int i = 0; i < functions.size(); i++) {
                 set(dest.get(i), function(functions.get(i), get(inputs.get(i)[0]), get(inputs.get(i)[1])));
-
             }
-
         }
 
         System.out.printf("The value stored to wire a after we override wire b %d\n", get("a"));
