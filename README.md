@@ -59,3 +59,8 @@ Turns lights on and off based on instructions, and returns the total number of t
 Part 2 
 
 Turns up and down lights where 0 is off, turn off turns down, turn on turns up by a factor of 1, and toggle turns up by a factor of two. Returns the total amount of light(lumens?) produced 
+
+
+**Day 7**
+
+Models a curcuit and after propogating a 16 bit signal through memory returns the value being passed through wire A, then runs the same curcuit where the value being passed through wire B is reset to whatever the output from wire A was.
