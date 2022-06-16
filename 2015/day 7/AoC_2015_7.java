@@ -71,7 +71,7 @@ public class AoC_2015_7 {
             String line = scanner.nextLine();
             Pattern twoInputs = Pattern.compile("(.+) (\\w+) (.+) -> (.+)");
             Matcher twoMatch = twoInputs.matcher(line);
-            Pattern oneInput = Pattern.compile("(\\w+) (.+) -> (.+)");
+            Pattern oneInput = Pattern.compile("\\w+ (.+) -> (.+)");
             Matcher oneMatch = oneInput.matcher(line);
             Pattern setValue = Pattern.compile("(.+) -> (.+)");
             Matcher valueMatch = setValue.matcher(line);
