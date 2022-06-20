@@ -64,3 +64,23 @@ Turns up and down lights where 0 is off, turn off turns down, turn on turns up b
 **Day 7**
 
 Models a curcuit and after propogating a 16 bit signal through memory returns the value being passed through wire A, then runs the same curcuit where the value being passed through wire B is reset to whatever the output from wire A was.
+
+**Day 8**
+
+Part 1
+
+Removes escape characters to read back plaintext and returns the length of this new array
+
+Part 2
+
+Add proper escape characters for subsequent users and returns the length of this program
+
+**Day 9**
+
+[N/A]
+
+**Day 10**
+
+Takes a single line as an argument or reads from ./file.txt
+
+Implements a look and say program that returns the length for a given input at both 40 and 50 cycles.
