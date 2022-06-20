@@ -10,13 +10,13 @@ public class AoC_2015_10 {
             StringBuilder tempString = new StringBuilder();
             for (int i = 0; i < input.length(); i++) {
                 char local = input.charAt(i);
-                int count = 0;
-                while (i + count < input.length() && local == input.charAt(i + count)) {
-                    count++;
-                }
-                //sets i to the character that did not match
-                i += count - 1;
-                tempString.append(count).append(local);
+                int index = i;
+                do {
+                    i++;
+                }  while (i < input.length() && local == input.charAt(i));
+                index = i - index;
+                i--;
+                tempString.append(index).append(local);
             }
             input = tempString.toString();
             if(j!= 0 && j%40.0 == 0) {
