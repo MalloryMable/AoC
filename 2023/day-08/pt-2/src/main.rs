@@ -4,6 +4,7 @@ use std::fs::{canonicalize, File};
 use std::io::{BufReader, BufRead};
 use std::collections::HashMap;
 use regex::Regex;
+use num::integer::gcd;
 
 fn reader_from_path(relative_path: &str) -> BufReader<File> {
     let absolute_path = {
@@ -77,15 +78,21 @@ fn main() {
 
     let mut searching = true;
     let mut steps: usize = 0;
+    let mut product: usize = 1;
+    let mut previous_len = positions.len();
 
     while searching {
         for next_move in &pathing{
-            if positions.iter().all(|position| position.chars().nth(2) == Some('Z')) {
+            
+
+            if positions.len() == 0 {
                 searching = false;
                 break;
-            }
+            } else if positions.len() < previous_len {
+                product = steps * (product/gcd(product,steps));
+            } 
             steps += 1;
-             
+            previous_len = positions.len(); 
             positions = positions.iter().map(|position| {
                 if let Some((left, right)) = map.get(position) {
                     match next_move {
@@ -96,12 +103,13 @@ fn main() {
                     eprintln!("Position mapping error");
                     std::process::exit(1);
                 }
-            })
+            }).filter(|position| position.chars().nth(2) != Some('Z'))
             .clone().collect();
 
         }
     }
 
-    println!("{}", steps);
+    println!("Steps for all ghosts to be on ..Z: {}", steps * (product/gcd(product,steps)));
+
 }
 
