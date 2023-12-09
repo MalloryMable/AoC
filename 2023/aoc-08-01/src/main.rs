@@ -4,8 +4,6 @@ use std::fs::{canonicalize, File};
 use std::io::{BufReader, BufRead};
 use std::collections::HashMap;
 use regex::Regex;
-// TODO: remove
-use std::{print, println, eprintln};
 
 fn reader_from_path(relative_path: &str) -> BufReader<File> {
     let absolute_path = {
@@ -83,7 +81,6 @@ fn main() {
                 &Direction::Left => "left",
                 &Direction::Right => "right"
             };
-            print!("{}: Starting at:{} Going: {}",steps, position, debug_direction); 
             if position == "ZZZ"{
                 searching = false;
                 break;
