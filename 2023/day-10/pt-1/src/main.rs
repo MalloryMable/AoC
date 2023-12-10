@@ -2,8 +2,6 @@ use std::env;
 use std::path::Path;
 use std::fs::{canonicalize, File};
 use std::io::{BufReader, BufRead};
-// TODO: Remove
-use std::{print, println, eprintln};
 
 fn reader_from_path(relative_path: &str) -> BufReader<File> {
     let absolute_path = {
@@ -29,7 +27,7 @@ fn reader_from_path(relative_path: &str) -> BufReader<File> {
     BufReader::<File>::new(file)
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq)]
 enum PipeType {
     Start,
     Vertical,
@@ -162,14 +160,12 @@ fn main() {
             current_index.1), Direction::South);
     current_index = next_step.0;
 
-    println!("New index: ({}, {})", current_index.0, current_index.1); 
     while map[current_index.0][current_index.1] != PipeType::Start {
         let current_pipe = &map[current_index.0][current_index.1];
         steps += 1;
         next_step = current_pipe.get_next(direction, current_index);
         direction = next_step.1;
         current_index = next_step.0;
-        println!("{}: {:?}-{:?}-({}, {})", steps, current_pipe, direction, current_index.0, current_index.1);
     }
     println!("Step count: {}", steps / 2);
 }
