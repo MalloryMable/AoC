@@ -2,8 +2,6 @@ use std::env;
 use std::path::Path;
 use std::fs::{canonicalize, File};
 use std::io::{BufReader, BufRead};
-// TODO: Remove
-use std::{print, println, eprintln};
 
 fn reader_from_path(relative_path: &str) -> BufReader<File> {
     let absolute_path = {
@@ -57,7 +55,6 @@ fn main() {
             }
         }
         if expanding {
-            println!("Empty row: {}", x);
             offset += 1;
             length = line.len();
         }
@@ -74,25 +71,12 @@ fn main() {
         }
     }
 
-
-    for col in filtered_columns {
-        println!("Empty column: {}", col);
-    }
-
-
-    for (x, y) in &galaxies {
-        println!("({}, {})", x, y);
-    }
-    
     let mut sum = 0;
     
-    let mut count = 1;
     for (offset, (x1, y1)) in galaxies.iter().enumerate(){
         for (x2, y2) in &galaxies[offset + 1..] {
             let prev_sum = sum;
             sum += (x2-x1).abs() + (y2-y1).abs();
-            println!("{}:({}, {}), ({}, {}): {}",count, x1, y1, x2, y2, sum - prev_sum);
-            count += 1;
         }
     }
     println!("{}", sum);
