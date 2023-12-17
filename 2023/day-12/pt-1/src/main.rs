@@ -85,8 +85,8 @@ fn main() {
             } 
             let mut combo_index = 0;
             let mut continuous: bool = false;
-            let mut line_1 = line.1.clone();
-            let mut current_group = line_1.get(0);
+            let mut group = line.1.clone();
+            let mut current_group = group.get(0);
             let mut cont_count = 0;
             let mut valid = true;
 
@@ -105,8 +105,8 @@ fn main() {
                             valid = false;
                             break;
                         }
-                        line_1.remove(0);
-                        current_group = line_1.get(0);
+                        group.remove(0);
+                        current_group = group.get(0);
                         
                         continuous = false;
                         cont_count = 0;
@@ -129,8 +129,8 @@ fn main() {
                         valid = false;    
                         break;
                     }
-                        line_1.remove(0);
-                        current_group = line_1.get(0);
+                        group.remove(0);
+                        current_group = group.get(0);
 
                         continuous = false;
                         cont_count = 0;
@@ -139,13 +139,13 @@ fn main() {
             }
 
             if continuous{
-                if line_1.get(0) != Some(&cont_count){
+                if group.get(0) != Some(&cont_count){
                     continue;
                 } else {
-                    line_1.remove(0);
+                    group.remove(0);
                 }
             }
-            if valid && line_1.is_empty() {sum += 1;}
+            if valid && group.is_empty() {sum += 1;}
         }
     }
     print!{"\n{}", sum};
