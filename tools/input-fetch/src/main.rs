@@ -2,10 +2,9 @@ use time::{OffsetDateTime, UtcOffset, Month};
 use std::{env, fs};
 use std::path::Path;
 use std::process;
-use ureq::{get, Response};
+use ureq::get;
 
 const BASE_URL: &str = "https://adventofcode.com";
-const EST_OFFSET: UtcOffset = UtcOffset::from_hms(-5, 0, 0).unwrap();
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let session = env::var("AOC_SESSION").expect("Please set AOC_SESSION enviroment variable");
@@ -20,7 +19,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 
     // Create a year and day directory if one doesn't exist. Appends leading zeros to day when needed
-    let day_dir = format!("{}/{:02}", year, day);
+    let day_dir = format!("{}/day-{:02}", year, day);
     fs::create_dir_all(&day_dir)?;
 
     let url = format!("{}/{}/day/{}/input", BASE_URL, year, day);
@@ -28,7 +27,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .set("Cookie", &format!("session={}", session))
         .call()?;
 
-    if !response.status() != 200 {
+    if response.status() != 200 {
         eprintln!("Failed to fetch input: {}", response.status());
         process::exit(1);
     }
@@ -43,8 +42,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-fn get_target_date(args: &[String]) -> (i32, i32) {
-    let now = OffsetDateTime::now_utc().to_offset(EST_OFFSET);
+fn get_target_date(args: &[String]) -> (i32, u8) {
+    
+    let est_offset: UtcOffset = UtcOffset::from_hms(-5, 0, 0).unwrap();
+    let now = OffsetDateTime::now_utc().to_offset(est_offset);
     
     // TODO: If the month of the year is before december default to last year
     let year = if args.len() > 2 {
