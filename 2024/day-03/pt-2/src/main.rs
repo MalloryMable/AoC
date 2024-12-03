@@ -26,17 +26,26 @@ fn main() {
 
     let re = Regex::new(r"mul\((\d+),(\d+)\)").unwrap();
 
-    println!("{}", reader.lines()
-        .filter_map(Result::ok)
-        .flat_map(|line| { // without flat_map we have to sum each line
-            re.captures_iter(&line)
+    let mut parsing = true;
+
+    let mut total = 0;
+
+    for line in reader.lines().filter_map(Result::ok) {
+        if line.contains("do()") {
+            parsing = true; // Enable parsing
+        } else if line.contains("don't()") {
+            parsing = false; // Disable parsing
+        } else if parsing {
+            total += re.captures_iter(&line)
                 .map(|cap| {
                     let num1 = cap[1].parse::<u32>().unwrap();
                     let num2 = cap[2].parse::<u32>().unwrap();
                     num1 * num2
                 })
-                .collect::<Vec<u32>>()
-        })
-        .sum::<u32>()
-    );
+                .sum::<u32>();
+        }
+    }
+
+    println!("{}", total);
 }
+
