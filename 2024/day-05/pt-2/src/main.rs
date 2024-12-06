@@ -2,6 +2,7 @@ use std::env;
 use std::path::Path;
 use std::fs::{canonicalize, File};
 use std::io::{BufReader, BufRead};
+use std::collections::HashMap;
 
 fn reader_from_path(relative_path: &str) -> BufReader<File> {
     let absolute_path = canonicalize(Path::new(relative_path))
@@ -14,24 +15,29 @@ fn reader_from_path(relative_path: &str) -> BufReader<File> {
 }
 
 struct Pages {
-    rules: Vec<(u32, u32)>,
-    swaps: u32, 
+    rules: HashMap<u32, Vec<u32>>,
 }
 
 impl Pages {
-   fn sort(&mut self, nums: &mut Vec<u32>) -> bool {
-       for (first, second) in &self.rules {
-           if let Some(pos) = nums.iter().position(|&x| x == *second) {
-               if let Some(swap_pos) = nums[pos+1..].iter().position(|&x| x == *first) {
-                   self.swaps += 1;
-                   nums.swap(pos, swap_pos + pos + 1);
-                   self.sort(nums);
-                   return true;
-               }
-           }
-       }
-       false
-   }
+    fn sort(&self, nums: &mut Vec<u32>) -> bool {
+        let mut swapped = false;
+
+        let len = nums.len();
+        for i in 0..len {
+            for j in 0..len - i - 1 { 
+                let first = nums[j];
+                let second = nums[j + 1];
+
+                if let Some(lower_vec) = self.rules.get(&first) {
+                    if lower_vec.contains(&second) {
+                        swapped = true;
+                        nums.swap(j,j + 1);
+                    }
+                } 
+            }
+        }
+        swapped
+    }
 }
 
 fn main() {
@@ -44,21 +50,22 @@ fn main() {
 
     let reader = reader_from_path(&args[1]);
 
-    let mut rules = Vec::new();
     let mut lines = reader.lines();
+    let mut rules: HashMap<u32, Vec<u32>> = HashMap::new();
+
 
     while let Some(Ok(line)) = lines.next() {
         if line.is_empty() { break; } // could be while !line.is_empty() but why delcare line
-        let (a, b) = line.split_once('|')
+        let (low, high) = line.split_once('|')
             .expect("Incorectly formmated ordering rule");
         
-        rules.push((
-            a.trim().parse::<u32>().unwrap(),
-            b.trim().parse::<u32>().unwrap()
-        ))
+        let low: u32 = low.parse::<u32>().unwrap();
+        let high: u32 = high.parse::<u32>().unwrap();
+        
+        rules.entry(high).or_insert_with(Vec::new).push(low);
     }
 
-    let mut pages = Pages { rules, swaps: 0}; 
+    let pages = Pages { rules, }; 
 
     let total: u32 = lines
         .filter_map(Result::ok)
@@ -74,6 +81,6 @@ fn main() {
             }
         })
         .sum();
-    println!("Middle page sum: {}. Swaps: {}", total, pages.swaps);
+    println!("Middle page sum: {}", total);
 }
 
